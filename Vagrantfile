@@ -69,4 +69,10 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  config.vm.provision "shell", inline: <<-SHELL
+    # Update for TLS support for nss and libcurl. This is required to make
+    # requests to github.com. 
+    # See: https://stackoverflow.com/questions/49128953/fatal-unable-to-access-https-github-com-gabelerner-canvg-git-peer-reports?rq=1
+    sudo yum update -y nss curl libcurl
+  SHELL
 end
