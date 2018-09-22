@@ -15,6 +15,9 @@ Vagrant.configure("2") do |config|
   config.vm.box = "liatrio/jenkinsnexus"
   config.vm.box_version = "0.0.1"
 
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_guest = true
+
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -69,6 +72,9 @@ Vagrant.configure("2") do |config|
   #   apt-get update
   #   apt-get install -y apache2
   # SHELL
+  
+  config.hostmanager.aliases = %w(nexus)
+
   config.vm.provision "shell", inline: <<-SHELL
     # Update for TLS support for nss and libcurl. This is required to make
     # requests to github.com. 
